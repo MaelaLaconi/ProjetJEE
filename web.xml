@@ -4707,5 +4707,113 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+		<servlet-name>HelloTest</servlet-name>
+		<servlet-class>ServletPackage.HelloServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	 <servlet>
+		<servlet-name>EchoTest</servlet-name>
+		<servlet-class>ServletPackage.EchoServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>JSP_Servlet</servlet-name>
+		<servlet-class>ServletPackage.JSP_Servlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>UserServlet</servlet-name>
+		<servlet-class>ServletPackage.UserServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>ServletPackage.LoginServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>ServletPackage.RegisterServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	
+	
+	<servlet-mapping>
+		<servlet-name>JSP_Servlet</servlet-name>
+		<url-pattern>/jsp_forms</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>HelloTest</servlet-name>
+		<url-pattern>/sayhello</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>EchoTest</servlet-name>
+		<url-pattern>/show-echo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>UserServlet</servlet-name>
+		<url-pattern>/user_servlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>
