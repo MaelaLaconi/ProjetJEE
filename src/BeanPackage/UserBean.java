@@ -1,14 +1,19 @@
 package BeanPackage;
 
+import SQLPackage.SQLConnector;
+
 public class UserBean  {
 	
 	private int id;
+	private static int nbUser = 1 ;
 	private String nom;
 	private String prenom;
-	private String rang;
+	private String rang;  //basic user or admin
 	private String password;
 	private String login;
 	
+	public UserBean() { id = nbUser++;}
+
 	public int getId() {
 		return this.id;
 	}

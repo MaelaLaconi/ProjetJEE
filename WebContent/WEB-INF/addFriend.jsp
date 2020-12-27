@@ -73,24 +73,23 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>You are logged !</h1>
+     	  	<h1>Voulez vous ajouter cette personne à vos amis ?</h1>
+     	  	
      	  	<hr>
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-				<% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
-				
-     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
-     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
+				<% UserBean current_search = (UserBean) session.getAttribute("current_search"); %>
+     	  		<h3> Login : <% out.print(current_search.getLogin()); %> </h3> 
+     	  		<h3> Prénom : <% out.print(current_search.getPrenom()); %> </h3> 
+     	  		<h3> Nom : <% out.print(current_search.getNom()); %> </h3> 
      	  		
-     	  		<form method="post" action="editProfil">
-     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
+     	  		<form method="post" action="envoyerDemande">
+     	  			<button class="btn btn-primary" type="submit">Envoyer demande d'ami</button>
      	  		</form>
-     	  		<form method="post" action="login">
-     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
+     	  		<form method="post" action="bean_servlet">
+     	  			<button class="btn btn-danger" type="submit">Retour à mon profil</button>
      	  		</form>
      	  	</div>
          <hr>

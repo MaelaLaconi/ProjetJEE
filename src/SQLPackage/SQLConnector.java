@@ -72,6 +72,47 @@ public class SQLConnector {
 			   return results;
 		   }
 		   
+		   public void updateUser(String sql_string) {
+			   Connection con = connect();
+			   try {
+				   Statement stmt = con.createStatement();
+				   stmt.executeUpdate(sql_string);
+				} catch (SQLException e) {
+				   e.printStackTrace();
+				}
+		   }
+		   
+		   public UserBean showFriend(String userSearch) {
+			   UserBean user = null;
+			   
+			   String rqString = "Select * from User where login='"+userSearch+"';";
+			   ResultSet res = doRequest(rqString);
+			   int i = 0;
+			   try {
+				   while(res.next()) {
+					   if(i==0) {
+						   user = new UserBean();
+						   user.setLogin(res.getString("login"));
+						   user.setPassword(res.getString("password"));
+						   user.setNom(res.getString("nom"));
+						   user.setPrenom(res.getString("prenom"));
+						   user.setRang(res.getString("role"));
+					   }
+					   else {
+						   i++;
+						   arret("Plus d'un utilisateur ayant le meme login ???");
+					   }
+
+				   }
+				} 
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			   return user;
+			   
+		   }
 		 
 		   public Connection connect() {
 			   

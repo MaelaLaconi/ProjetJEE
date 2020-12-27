@@ -15,20 +15,7 @@
 		<session-timeout>10</session-timeout>
 	</session-config>
   
-  	<servlet>
-		<servlet-name>TestTuto</servlet-name>
-		<servlet-class>servlets.TestTuto</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>Connexion</servlet-name>
-		<servlet-class>servlets.Connexion</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>Deconnexion</servlet-name>
-		<servlet-class>servlets.Deconnexion</servlet-class>
-	</servlet>
+  
 	
 	
 	<!-- servelet ajoutees recemment -->
@@ -81,24 +68,56 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>EditProfilServlet</servlet-name>
+		<servlet-class>ServletPackage.EditProfilServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>SaveEditServlet</servlet-name>
+		<servlet-class>ServletPackage.SaveEditServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RechercheServlet</servlet-name>
+		<servlet-class>ServletPackage.RechercheServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>NotifServlet</servlet-name>
+		<servlet-class>ServletPackage.NotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<!-- FIN -->
-	
-	
-	
-	<servlet-mapping>
-		<servlet-name>TestTuto</servlet-name>
-		<url-pattern>/toto</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>Connexion</servlet-name>
-		<url-pattern>/connexion</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>Deconnexion</servlet-name>
-		<url-pattern>/deconnexion</url-pattern>
-	</servlet-mapping>
 	
 	
 	
@@ -123,7 +142,24 @@
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>	
+		<servlet-name>EditProfilServlet</servlet-name>
+		<url-pattern>/editProfil</url-pattern>
+	</servlet-mapping>
 	
+	<servlet-mapping>	
+		<servlet-name>SaveEditServlet</servlet-name>
+		<url-pattern>/saveEdit</url-pattern>
+	</servlet-mapping>
 	
+	<servlet-mapping>	
+		<servlet-name>RechercheServlet</servlet-name>
+		<url-pattern>/recherche</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>NotifServlet</servlet-name>
+		<url-pattern>/envoyerDemande</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
