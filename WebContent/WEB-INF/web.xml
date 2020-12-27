@@ -15,7 +15,20 @@
 		<session-timeout>10</session-timeout>
 	</session-config>
   
-  
+  	<servlet>
+		<servlet-name>TestTuto</servlet-name>
+		<servlet-class>servlets.TestTuto</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Connexion</servlet-name>
+		<servlet-class>servlets.Connexion</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Deconnexion</servlet-name>
+		<servlet-class>servlets.Deconnexion</servlet-class>
+	</servlet>
 	
 	
 	<!-- servelet ajoutees recemment -->
@@ -69,6 +82,23 @@
 	</servlet>
 	
 	<!-- FIN -->
+	
+	
+	
+	<servlet-mapping>
+		<servlet-name>TestTuto</servlet-name>
+		<url-pattern>/toto</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Deconnexion</servlet-name>
+		<url-pattern>/deconnexion</url-pattern>
+	</servlet-mapping>
 	
 	
 	

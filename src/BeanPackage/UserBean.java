@@ -5,7 +5,7 @@ public class UserBean  {
 	private int id;
 	private String nom;
 	private String prenom;
-	private String rang;  //basic user or admin
+	private String rang;
 	private String password;
 	private String login;
 	

@@ -83,13 +83,12 @@
      	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
      	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
      	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
-     	  		<button class="btn btn-primary" type="button">Modifier mes informations</button>
-     	  		<button class="btn btn-danger" type="button">Deconnexion</button>
      	  		
      	  	</div>
          <hr>
      	</div>
      </div>
+
 	<hr>
 	</br>
     </main>
