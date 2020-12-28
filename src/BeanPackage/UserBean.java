@@ -12,7 +12,7 @@ public class UserBean  {
 	private String password;
 	private String login;
 	
-	public UserBean() { id = nbUser++;}
+	public UserBean() {}
 
 	public int getId() {
 		return this.id;
@@ -60,5 +60,10 @@ public class UserBean  {
 	
 	public void setRang( String rang ) {
 		this.rang = rang;
+	}
+	
+	public int getNbNotif() {
+		SQLConnector sc = new SQLConnector() ;
+		return sc.getNbNotifUser(this.login) ;
 	}
 }

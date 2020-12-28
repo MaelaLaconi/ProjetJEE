@@ -33,7 +33,9 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+          
+            <a class="nav-link" href="#">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -79,7 +81,6 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-				<% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
 				
      	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
      	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 

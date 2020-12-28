@@ -57,7 +57,65 @@ public class SQLConnector {
 					e.printStackTrace();
 				}
 		   }
+		
+		/**
+		 * cree une notification dans la db
+		 * @param expediteur
+		 * @param receveur
+		 * @param type
+		 * @param statut
+		 */
+		public void createNotification(String expediteur, String receveur, String type, String statut) {
+			
+			   Connection con = connect();
+			   
+			    try {			    	
+			    	
+			    	Statement stmt = con.createStatement();
+			    	String rqString = "INSERT INTO Notification (expediteur,receveur,type,statut) VALUES ('"+
+							   expediteur+"','"+receveur+"','"+type+"','"+statut+"')";
+					stmt.executeUpdate(rqString);
+				} 
+			    catch (SQLException e) {
+					e.printStackTrace();
+				}
+		   }
+		
+		public boolean notExistNotification(String expediteur, String receveur) {
+			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"';";
+			ResultSet resultat = doRequest(rqString);
+			   int i = 0;
+			   try {
+				   while(resultat.next()) {
+					   i++ ;
+					   }
+				} 
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (i==0);
+		}
 		   
+		public int getNbNotifUser(String loginUser) {
+			String rqString = "Select * from Notification where receveur='"+loginUser+"';";
+			ResultSet resultat = doRequest(rqString);
+			   int i = 0;
+			   try {
+				   while(resultat.next()) {
+					   i++ ;
+					   }
+				} 
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (i);
+		}
 		   
 		   public  ResultSet doRequest(String sql_string) {
 			   ResultSet results = null;
@@ -72,6 +130,10 @@ public class SQLConnector {
 			   return results;
 		   }
 		   
+		   /**
+		    * permet d'executer une requete
+		    * @param sql_string
+		    */
 		   public void updateUser(String sql_string) {
 			   Connection con = connect();
 			   try {
@@ -82,6 +144,11 @@ public class SQLConnector {
 				}
 		   }
 		   
+		   /**
+		    * monter l'utilisteur chercher pour ajouter en ami
+		    * @param userSearch
+		    * @return null si le login cherché n'exsite pas, un UserBean sinon
+		    */
 		   public UserBean showFriend(String userSearch) {
 			   UserBean user = null;
 			   
@@ -109,11 +176,14 @@ public class SQLConnector {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			   
 			   return user;
 			   
 		   }
 		 
+		   /**
+		    * connection a la db
+		    * @return null si connection echouée, un objet Connection sinon
+		    */
 		   public Connection connect() {
 			   
 			   Connection con = null;

@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import BeanPackage.UserBean;
+import SQLPackage.SQLConnector;
 
 /**
  * Servlet implementation class NotifServlet
@@ -27,7 +31,21 @@ public class NotifServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		UserBean current_user = (UserBean) session.getAttribute("current_user");
+		UserBean current_search = (UserBean) session.getAttribute("current_search");
+		if(current_user == null) {
+			request.getRequestDispatcher( "/WEB-INF/bean.jsp" ).forward( request, response );
+		}
+		else{
+			//tester si demande pas deja envoye
+			SQLConnector sc = new SQLConnector() ;
+			if(sc.notExistNotification(current_user.getLogin(), current_search.getLogin())) {
+				sc.createNotification(current_user.getLogin(), current_search.getLogin(), "demandeAmi", "attente") ;
+			}
+			request.getRequestDispatcher( "/WEB-INF/logged.jsp" ).forward( request, response );
+		}
 	}
 
 	/**

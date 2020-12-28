@@ -33,8 +33,8 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
+			<% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+            <a class="nav-link" href="#">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
