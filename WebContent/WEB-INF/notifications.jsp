@@ -86,7 +86,7 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	<form method="post" id="form_accepte" action="accepteNotif"></form>
-     	  	<form method="post" id="form_refuse" action="accepteNotif"></form>
+     	  	<form method="post" id="form_refuse" action="refuseNotif"></form>
  
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
             <tr>
@@ -105,26 +105,16 @@
             	<td><%Notification notif = (Notification)list.get(i);
             	out.print(notif.getExpediteur()); %> vous a envoyé une demande d'ami</td>
             	<td>
-            		<button type="submit" class="btn btn-secondary" form="form_accepte">Accepter</button>
+            		<button type="submit" name="expe" class="btn btn-secondary" form="form_accepte">Accepter</button>
+            		<input type="hidden" name="expe" id="expe" value=<%out.print(notif.getExpediteur());%>/>
             	</td>
             	<td>
-            	    <button type="submit" class="btn btn-danger form="form_refuse">Refuser</button>
+            	    <button type="submit" class="btn btn-danger" form="form_refuse">Refuser</button>
             	</td>
             </tr>
             <% } %>
             </table>
 				
-     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
-     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
-     	  		
-     	  		<form method="post" action="editProfil">
-     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
-     	  		</form>
-     	  		<form method="post" action="login">
-     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
-     	  		</form>
      	  	</div>
          <hr>
      	</div>

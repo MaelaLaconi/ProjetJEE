@@ -120,6 +120,16 @@ public class SQLConnector {
 			return (i);
 		}
 		
+		public void accepteNotifUser(String r, String e) {
+			String rqString = "UPDATE Notification SET statut='accepte' WHERE receveur='"+r+"' and expediteur ='"+e+"'";
+			ResultSet resultat = doRequest(rqString);
+		}
+		
+		public void refuseNotifUser(String r, String e) {
+			String rqString = "UPDATE Notification SET statut='refuse' WHERE receveur='"+r+"' and expediteur ='"+e+"'";
+			ResultSet resultat = doRequest(rqString);
+		}
+		
 		public List<Notification> getNotifAttente(String login){
 			List<Notification> list = new ArrayList() ;
 			String rqString = "Select * from Notification where receveur='"+login+"' and statut='attente';";

@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AccepteNotifServlet
+ * Servlet implementation class RefuseNotifServlet
  */
-@WebServlet("/AccepteNotifServlet")
-//@RequestMapping("/WEB-INF/bean.jsp", method= RequestMethode.POST) 
-public class AccepteNotifServlet extends HttpServlet {
+@WebServlet("/RefuseNotifServlet")
+public class RefuseNotifServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccepteNotifServlet() {
+    public RefuseNotifServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +27,7 @@ public class AccepteNotifServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String expediteur = request.getParameter("expe") ;
-		System.out.print("l'expediteur est "+expediteur) ;
-		response.getWriter().append("Served at: ").append(expediteur);
-
-
+		response.getWriter().append("Served at: dans refuse ").append(request.getContextPath());
 	}
 
 	/**

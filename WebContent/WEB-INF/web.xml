@@ -130,6 +130,18 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>RefuseNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.RefuseNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	
 	
 	<servlet>
@@ -194,6 +206,12 @@
 		<servlet-name>AccepteNotifServlet</servlet-name>
 		<url-pattern>/accepteNotif</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>RefuseNotifServlet</servlet-name>
+		<url-pattern>/refuseNotif</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet-mapping>	
 		<servlet-name>ShowNotifServlet</servlet-name>
