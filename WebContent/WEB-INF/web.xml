@@ -117,6 +117,34 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	
+	<servlet>
+		<servlet-name>AccepteNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.AccepteNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	
+	<servlet>
+		<servlet-name>ShowNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	
 	<!-- FIN -->
 	
 	
@@ -160,6 +188,16 @@
 	<servlet-mapping>	
 		<servlet-name>NotifServlet</servlet-name>
 		<url-pattern>/envoyerDemande</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>AccepteNotifServlet</servlet-name>
+		<url-pattern>/accepteNotif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowNotifServlet</servlet-name>
+		<url-pattern>/showNotif</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

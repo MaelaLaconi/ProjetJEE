@@ -34,8 +34,9 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
-          
-            <a class="nav-link" href="#">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
+          	<form methode="post" action="showNotif" id="my_form">
+            	<a class="nav-link" href="#" onclick="document.getElementById('my_form').submit()">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
+          	</form>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>

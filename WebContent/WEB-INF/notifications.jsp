@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <%@ page import="BeanPackage.UserBean" %>
+<%@ page import="BeanPackage.Notification" %>
+
+<%@ page import="SQLPackage.SQLConnector" %>
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
-<html>
-
 <head>
 
   	<meta charset="utf-8">
@@ -34,8 +38,10 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-			<% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+          <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
+          
             <a class="nav-link" href="notifications.jsp">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
@@ -51,8 +57,10 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        
+        <!-- Recherche utilistateur -->
+        <form class="form-inline my-2 my-lg-0" method="post" action="recherche">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -72,33 +80,55 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>Je modifie mon profil</h1>
+     	  	<h1>Vos notification(s) !</h1>
      	  	<hr>
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
-     	  	
-				<form action="saveEdit" method="post">
-	     	  		<h3> Your new login is : </h3> 
-	     	  		<input name="newLogin" type="text" required="required"/>
-	     	  		
-	     	  		<h3> Your new password is : </h3> 
-	     	  		<input name="newPw" type="password" required="required"/>
-	     	  		
-	     	  		<h3> Your new name is : </h3> 
-	     	  		<input name="newName" type="text" required="required"/>
-	     	  		
-	     	  		<h3> Your new last name is : </h3> 
-  			     	<input name="newLastName" type="text" required="required"/>
+     	  	<form method="post" id="form_accepte" action="accepteNotif"></form>
+     	  	<form method="post" id="form_refuse" action="accepteNotif"></form>
+ 
+        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
+            <tr>
+                <td><center>Notification(s)</center></td>
+                <td><center>Accepter</center></td>
+                <td><center>Refuser</center></td>
+ 
+            </tr>
+             
+            <%
+	            SQLConnector sc = new SQLConnector();
+	            List list = sc.getNotifAttente(current_user.getLogin());
+	            for(int i = 0 ; i < list.size() ; i++){       
+            %>
+            <tr>
+            	<td><%Notification notif = (Notification)list.get(i);
+            	out.print(notif.getExpediteur()); %> vous a envoyé une demande d'ami</td>
+            	<td>
+            		<button type="submit" class="btn btn-secondary" form="form_accepte">Accepter</button>
+            	</td>
+            	<td>
+            	    <button type="submit" class="btn btn-danger form="form_refuse">Refuser</button>
+            	</td>
+            </tr>
+            <% } %>
+            </table>
+				
+     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
+     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
+     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
+     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
      	  		
-     	  			<button class="btn btn-primary" type="submit">Enregister</button>
-     	  			
+     	  		<form method="post" action="editProfil">
+     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
+     	  		</form>
+     	  		<form method="post" action="login">
+     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
      	  		</form>
      	  	</div>
          <hr>
      	</div>
      </div>
-
 	<hr>
 	</br>
     </main>
@@ -115,4 +145,5 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-</html>>
+
+</html>

@@ -1,6 +1,9 @@
 package SQLPackage;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import BeanPackage.Notification;
 import BeanPackage.UserBean;
 
 public class SQLConnector {
@@ -115,6 +118,31 @@ public class SQLConnector {
 			   
 			
 			return (i);
+		}
+		
+		public List<Notification> getNotifAttente(String login){
+			List<Notification> list = new ArrayList() ;
+			String rqString = "Select * from Notification where receveur='"+login+"' and statut='attente';";
+			ResultSet res = doRequest(rqString);
+			Notification notif = null ;
+			   int i = 0;
+			   try {
+				   while(res.next()) {
+					   notif = new Notification();
+					   notif.setExpediteur(res.getString("expediteur"));
+					   notif.setReceveur(res.getString("receveur"));
+					   notif.setType(res.getString("type"));
+					   notif.setStatut(res.getString("statut"));
+					   list.add(notif);
+				}
+			   }
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (list);
 		}
 		   
 		   public  ResultSet doRequest(String sql_string) {
