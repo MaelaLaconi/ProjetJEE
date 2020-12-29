@@ -86,9 +86,10 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-     	  	<form method="post" id="form_refuse" action="refuseNotif"></form>
+     	  	<form method="post" id="form_refuse" action="refuseNotif">
+ 	  	        <input type="hidden" name="expe" id="expe" value=""/>
+     	  	</form>
  			<form method="post" id="form_accepte" action="accepteNotif">
- 			
            		<input type="hidden" name="expe" id="expe" value=""/>
      	  	</form>
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
@@ -117,7 +118,7 @@
 					</script>
             	</td>
             	<td>
-            	    <button type="submit" class="btn btn-danger" form="form_refuse">Refuser</button>
+            	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_refuse" onclick="setNotif(this)">Refuser</button>
             	</td>
             </tr>
             <% } %>

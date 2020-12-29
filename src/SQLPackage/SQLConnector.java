@@ -103,7 +103,7 @@ public class SQLConnector {
 		}
 		   
 		public int getNbNotifUser(String loginUser) {
-			String rqString = "Select * from Notification where receveur='"+loginUser+"';";
+			String rqString = "Select * from Notification where receveur='"+loginUser+"' and statut='attente';";
 			ResultSet resultat = doRequest(rqString);
 			   int i = 0;
 			   try {
@@ -128,9 +128,12 @@ public class SQLConnector {
 			updateUser(rqString);
 		}
 		
-		public void refuseNotifUser(String r, String e) {
-			String rqString = "UPDATE Notification SET statut='refuse' WHERE receveur='"+r+"' and expediteur ='"+e+"'";
-			ResultSet resultat = doRequest(rqString);
+		public void refuseNotifUser(Notification n) {
+			String receveur = n.getReceveur();
+			String expediteur = n.getExpediteur();
+			String type = n.getType();
+			String rqString = "UPDATE Notification SET statut='refuse' WHERE receveur='"+receveur+"' and expediteur ='"+expediteur+"' and type='"+type+"'";
+			updateUser(rqString);
 		}
 		
 		public List<Notification> getNotifAttente(String login){
