@@ -136,6 +136,15 @@ public class SQLConnector {
 			updateUser(rqString);
 		}
 		
+		//a faire
+		public void supprimerAmi(Notification n) {
+			String receveur = n.getReceveur();
+			String expediteur = n.getExpediteur();
+			String type = n.getType();
+			String rqString = "UPDATE Notification SET statut='refuse' WHERE receveur='"+receveur+"' and expediteur ='"+expediteur+"' and type='"+type+"'";
+			updateUser(rqString);
+		}
+		
 		public List<Notification> getNotifAttente(String login){
 			List<Notification> list = new ArrayList() ;
 			String rqString = "Select * from Notification where receveur='"+login+"' and statut='attente';";
@@ -150,6 +159,35 @@ public class SQLConnector {
 					   notif.setType(res.getString("type"));
 					   notif.setStatut(res.getString("statut"));
 					   list.add(notif);
+				}
+			   }
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (list);
+		}
+		
+		public List<String> getAmis(String login){
+			List<String> list = new ArrayList() ;
+			String rqString2 = "Select * from Notification where receveur='"+login+"' and statut='accepte';";
+			String rqString1 = "Select * from Notification where expediteur='"+login+"' and statut='accepte';";
+			
+			ResultSet res = doRequest(rqString2);
+			   int i = 0;
+			   try {
+				  
+				   while(res.next()) {
+					   list.add(res.getString("expediteur"));
+				}
+				   res = doRequest(rqString1);
+				   while(res.next()) {
+					   String e = res.getString("receveur") ;
+					   if(!list.contains(e)) {
+						   list.add(e);
+					   }
 				}
 			   }
 			   catch (SQLException e) {

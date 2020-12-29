@@ -155,6 +155,19 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+		
+	<servlet>
+		<servlet-name>ShowAmisServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowAmisServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 		
 	
 	<!-- FIN -->
@@ -212,10 +225,14 @@
 		<url-pattern>/refuseNotif</url-pattern>
 	</servlet-mapping>
 	
-	
 	<servlet-mapping>	
 		<servlet-name>ShowNotifServlet</servlet-name>
 		<url-pattern>/showNotif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowAmisServlet</servlet-name>
+		<url-pattern>/showAmis</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

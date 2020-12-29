@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+   
 <%@ page import="BeanPackage.UserBean" %>
+<%@ page import="BeanPackage.Notification" %>
+
+<%@ page import="SQLPackage.SQLConnector" %>
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
 <head>
@@ -34,14 +39,11 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
-          	<form methode="post" action="showNotif" id="my_form">
-            	<a class="nav-link" href="#" onclick="document.getElementById('my_form').submit()">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
-          	</form>
+          
+            <a class="nav-link" href="notifications.jsp">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
           </li>
-         <li class="nav-item active">
-          	<form methode="post" action="showAmis" id="form_ami">
-            	<a class="nav-link" href="#" onclick="document.getElementById('form_ami').submit()">Mes amis<span class="sr-only">(current)</span></a>
-          	</form>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
@@ -78,24 +80,39 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>You are logged !</h1>
+     	  	<h1>Vos amis !</h1>
      	  	<hr>
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
      	  	
+     	  	<form method="post" id="my_form" action="suppAmi">
+ 	  	        <input type="hidden" name="ligne" id="expe" value=""/>
+     	  	</form>
+ 			
+        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
+            
+             <%
+ 				SQLConnector sc = new SQLConnector();
+            	List list = sc.getAmis(current_user.getLogin());           
+	            for(int i = 0 ; i < list.size() ; i++){       
+            %>
+            <tr>
+            	<td>
+            		<% out.print(list.get(i)); list.size();%> est votre ami
+            	</td>
+            	<td>
+            	    <button id =<%out.print(i);%> type="submit" name="supp" class="btn btn-danger" form="my_form" onclick="delete(this)">Supprimer</button>
+            		<script>
+						function delete(e) {
+						    document.getElementById("expe").value = e.id ;
+						}
+					</script>
+            	</td>
+            </tr>
+            <% } %>
+            </table>
 				
-     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
-     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
-     	  		
-     	  		<form method="post" action="editProfil">
-     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
-     	  		</form>
-     	  		<form method="post" action="login">
-     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
-     	  		</form>
      	  	</div>
          <hr>
      	</div>
@@ -116,4 +133,5 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
+
 </html>
