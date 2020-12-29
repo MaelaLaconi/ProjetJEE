@@ -168,7 +168,18 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
+	<servlet>
+		<servlet-name>SuppAmiServlet</servlet-name>
+		<servlet-class>ServletPackage.SuppAmiServlet</servlet-class>
 		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>		
 	
 	<!-- FIN -->
 	
@@ -234,5 +245,11 @@
 		<servlet-name>ShowAmisServlet</servlet-name>
 		<url-pattern>/showAmis</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SuppAmiServlet</servlet-name>
+		<url-pattern>/suppAmi</url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>

@@ -37,9 +37,10 @@ public class SuppAmiServlet extends HttpServlet {
 		response.setContentType("text/html");	
 
 		//on recupere le numero de la notif que l'on veut accepter
-		String ligneNotif = request.getParameter("ligne") ;
+		String ligneNotif = request.getParameter("expe") ;
 		int nbLigne = Integer.parseInt(ligneNotif);
-		
+		System.out.print("Pour la ligne"+ ligneNotif) ;
+
 		
 		HttpSession session = request.getSession();
 		UserBean current_user = (UserBean) session.getAttribute("current_user");
@@ -49,13 +50,14 @@ public class SuppAmiServlet extends HttpServlet {
 		}
 		else{
 			SQLConnector sc = new SQLConnector();
-			List list = sc.getNotifAttente(current_user.getLogin()); 
-			Notification notif = (Notification) list.get(nbLigne);
+			List list = sc.getAmis(current_user.getLogin()); 
+			String notif = (String) list.get(nbLigne);
 
-			sc.accepteNotifUser(notif);
-			request.getRequestDispatcher( "/WEB-INF/notifications.jsp" ).forward( request, response );
+			sc.supprimerAmi(notif);
+			request.getRequestDispatcher( "/WEB-INF/amis.jsp" ).forward( request, response );
 
-		}	}
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

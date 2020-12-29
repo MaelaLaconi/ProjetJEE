@@ -87,7 +87,7 @@
      	  	<div class="col-md-12">
      	  	
      	  	<form method="post" id="my_form" action="suppAmi">
- 	  	        <input type="hidden" name="ligne" id="expe" value=""/>
+ 	  	        <input type="hidden" name="expe" id="expe" value=""/>
      	  	</form>
  			
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
@@ -99,12 +99,12 @@
             %>
             <tr>
             	<td>
-            		<% out.print(list.get(i)); list.size();%> est votre ami
+            		<% out.print(list.get(i));%> est votre ami
             	</td>
             	<td>
-            	    <button id =<%out.print(i);%> type="submit" name="supp" class="btn btn-danger" form="my_form" onclick="delete(this)">Supprimer</button>
+            	    <button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-danger" form="my_form" onclick="setNotif(this)">Supprimer</button>
             		<script>
-						function delete(e) {
+						function setNotif(e) {
 						    document.getElementById("expe").value = e.id ;
 						}
 					</script>

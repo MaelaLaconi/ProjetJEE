@@ -137,11 +137,8 @@ public class SQLConnector {
 		}
 		
 		//a faire
-		public void supprimerAmi(Notification n) {
-			String receveur = n.getReceveur();
-			String expediteur = n.getExpediteur();
-			String type = n.getType();
-			String rqString = "UPDATE Notification SET statut='refuse' WHERE receveur='"+receveur+"' and expediteur ='"+expediteur+"' and type='"+type+"'";
+		public void supprimerAmi(String n) {
+			String rqString = "DELETE from Notification WHERE receveur='"+n+"' or expediteur ='"+n+"' and type='demandeAmi'";
 			updateUser(rqString);
 		}
 		
@@ -172,8 +169,8 @@ public class SQLConnector {
 		
 		public List<String> getAmis(String login){
 			List<String> list = new ArrayList() ;
-			String rqString2 = "Select * from Notification where receveur='"+login+"' and statut='accepte';";
-			String rqString1 = "Select * from Notification where expediteur='"+login+"' and statut='accepte';";
+			String rqString2 = "Select * from Notification where receveur='"+login+"' and statut='accepte' and type='demandeAmi';";
+			String rqString1 = "Select * from Notification where expediteur='"+login+"' and statut='accepte' and type='demandeAmi';";
 			
 			ResultSet res = doRequest(rqString2);
 			   int i = 0;
