@@ -85,9 +85,12 @@
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
-     	  	<form method="post" id="form_accepte" action="accepteNotif"></form>
+     	  	
      	  	<form method="post" id="form_refuse" action="refuseNotif"></form>
- 
+ 			<form method="post" id="form_accepte" action="accepteNotif">
+ 			
+           		<input type="hidden" name="expe" id="expe" value=""/>
+     	  	</form>
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
             <tr>
                 <td><center>Notification(s)</center></td>
@@ -95,18 +98,23 @@
                 <td><center>Refuser</center></td>
  
             </tr>
-             
-            <%
-	            SQLConnector sc = new SQLConnector();
-	            List list = sc.getNotifAttente(current_user.getLogin());
+             <%
+ 				SQLConnector sc = new SQLConnector();
+            	List list = sc.getNotifAttente(current_user.getLogin());           
 	            for(int i = 0 ; i < list.size() ; i++){       
             %>
             <tr>
-            	<td><%Notification notif = (Notification)list.get(i);
-            	out.print(notif.getExpediteur()); %> vous a envoyé une demande d'ami</td>
             	<td>
-            		<button type="submit" name="expe" class="btn btn-secondary" form="form_accepte">Accepter</button>
-            		<input type="hidden" name="expe" id="expe" value=<%out.print(notif.getExpediteur());%>/>
+            		<% Notification notif = (Notification)list.get(i);
+            		out.print(notif.getExpediteur()); %> vous a envoyé une demande d'ami
+            	</td>
+            	<td>
+            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_accepte" onclick="setNotif(this)">Accepter</button>
+            		<script>
+						function setNotif(e) {
+						    document.getElementById("expe").value = e.id ;
+						}
+					</script>
             	</td>
             	<td>
             	    <button type="submit" class="btn btn-danger" form="form_refuse">Refuser</button>

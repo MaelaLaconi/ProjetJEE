@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import BeanPackage.Notification;
+import BeanPackage.UserBean;
 
 /**
  * Servlet implementation class AccepteNotifServlet
@@ -28,10 +32,13 @@ public class AccepteNotifServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String expediteur = request.getParameter("expe") ;
-		System.out.print("l'expediteur est "+expediteur) ;
-		response.getWriter().append("Served at: ").append(expediteur);
-
+		//
+		String ligneNotif = request.getParameter("expe") ;
+		System.out.print("L'id est "+ligneNotif) ;
+		
+		response.setContentType("text/html");	
+		
+		HttpSession session = request.getSession();
 
 	}
 
