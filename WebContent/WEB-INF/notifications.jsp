@@ -127,8 +127,34 @@
             </tr>
             <% } %>
             </table>
-				
      	  	</div>
+     	  	<!--  Historique ne marche pas null pointer exception
+     	  	
+     	  	<div>
+     	  	<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
+			<% 			
+
+			//List hist = sc.getNotifHistorique(current_user.getLogin()); %>
+			
+			<tr>
+                <td><center>Historique</center></td>
+                <td><center>Statut</center></td>
+ 
+            </tr>
+            <%	           // for(int j = 0 ; j < hist.size() ; j++){        %>
+            <tr>
+            	<td>
+            		<% //Notification notif2 = (Notification)hist.get(j);
+            		//out.print(notif2.getExpediteur()); %> 
+            	</td>
+            	<td>
+            		<%//out.print(notif2.getStatut());%>
+            	</td>
+            </tr>
+            	<%//} %>
+			</table>	
+			</div>
+			-->
          <hr>
      	</div>
      </div>
