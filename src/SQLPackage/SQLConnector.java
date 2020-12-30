@@ -102,15 +102,15 @@ public class SQLConnector {
 				}
 		   }
 	
-	public void createLieu(String nom, String adresse, int id) {
+	public void createLieu(String nom, String adresse) {
 		
 		   Connection con = connect();
 		   
 		    try {			    	
 		    	
 		    	Statement stmt = con.createStatement();
-		    	String rqString = "INSERT INTO Lieu (nom, adresse, idActivite) VALUES ('"+nom+"', '"+adresse+
-		    			"', "+id+")";
+		    	String rqString = "INSERT INTO Lieu (nom, adresse) VALUES ('"+nom+"', '"+adresse+
+		    			"')";
 				stmt.executeUpdate(rqString);
 			} 
 		    catch (SQLException e) {

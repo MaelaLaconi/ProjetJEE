@@ -79,7 +79,6 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>You are logged !</h1>
      	  	<hr>
      	  	</br>
      	  	</br>
@@ -120,4 +119,4 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-</html>l>
+</html>

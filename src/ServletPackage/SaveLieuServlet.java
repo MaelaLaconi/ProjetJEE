@@ -1,9 +1,6 @@
 package ServletPackage;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +12,16 @@ import BeanPackage.UserBean;
 import SQLPackage.SQLConnector;
 
 /**
- * Servlet implementation class CheckLieuServlet
+ * Servlet implementation class SaveLieuServlet
  */
-@WebServlet("/CheckLieuServlet")
-public class CheckLieuServlet extends HttpServlet {
+@WebServlet("/SaveLieuServlet")
+public class SaveLieuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckLieuServlet() {
+    public SaveLieuServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,34 +36,22 @@ public class CheckLieuServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		UserBean current_user = (UserBean) session.getAttribute("current_user");
-		
-		if(current_user == null) {
+		String lieu = (String) session.getAttribute("lieu");
+
+		if(current_user == null || lieu == null) {
 			
 			request.getRequestDispatcher( "/WEB-INF/bean.jsp" ).forward( request, response );
 		}
 		else{
-			String lieu = request.getParameter("lieu") ;	
-			String dateActivite = request.getParameter("dateActivite") ;
-			String debut = request.getParameter("debut") ;
-			String fin = request.getParameter("fin") ;
-			String login = current_user.getLogin() ;
-			
-
+			String adr = request.getParameter("adr") ;
 			SQLConnector sc = new SQLConnector() ;
-			if(sc.existLieu(lieu, dateActivite, debut, fin, login)) {
-				sc.createActivite(dateActivite, debut, fin , lieu, login) ;
-				request.getRequestDispatcher( "/WEB-INF/activity.jsp" ).forward( request, response );
 
-			}
-			else {
-				//pb si dans la creation du lieu on mets pas la meme adresse -> faire setAttribut et recup dans jsp ?
-				session.setAttribute("lieu",lieu);
-				sc.createActivite(dateActivite, debut, fin , lieu, login) ;
-				request.getRequestDispatcher( "/WEB-INF/lieu.jsp" ).forward( request, response );
+			sc.createLieu(lieu, adr);
+			request.getRequestDispatcher( "/WEB-INF/activity.jsp" ).forward( request, response );
 
-			}
 		}
-	}
+			
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

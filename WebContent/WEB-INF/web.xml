@@ -204,6 +204,18 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>SaveLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.SaveLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<!-- FIN -->
 	
 	
@@ -282,6 +294,11 @@
 	<servlet-mapping>	
 		<servlet-name>CheckLieuServlet</servlet-name>
 		<url-pattern>/checkLieu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SaveLieuServlet</servlet-name>
+		<url-pattern>/saveLieu</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
