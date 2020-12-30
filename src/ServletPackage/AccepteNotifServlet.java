@@ -39,7 +39,10 @@ public class AccepteNotifServlet extends HttpServlet {
 		response.setContentType("text/html");	
 
 		//on recupere le numero de la notif que l'on veut accepter
-		String ligneNotif = request.getParameter("expe") ;
+		
+		String ligneNotif = request.getParameter("expe1") ;
+		System.out.print("ligne recup "+ ligneNotif) ;
+
 		int nbLigne = Integer.parseInt(ligneNotif);
 		
 		

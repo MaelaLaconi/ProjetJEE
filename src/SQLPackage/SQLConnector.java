@@ -84,6 +84,57 @@ public class SQLConnector {
 				}
 		   }
 		
+	
+		
+	public void createActivite(Date date, Time debut, Time fin, String nomLieu, String login) {
+			
+			   Connection con = connect();
+			   
+			    try {			    	
+			    	
+			    	Statement stmt = con.createStatement();
+			    	String rqString = "INSERT INTO Activite (dateActivite, debut, fin, nomLieu, login) VALUES ('"+date+
+			    			"', '"+debut+"', '"+fin+"', '"+nomLieu+"', '"+login+"')";
+					stmt.executeUpdate(rqString);
+				} 
+			    catch (SQLException e) {
+					e.printStackTrace();
+				}
+		   }
+	
+	public void createLieu(String nom, String adresse, int id) {
+		
+		   Connection con = connect();
+		   
+		    try {			    	
+		    	
+		    	Statement stmt = con.createStatement();
+		    	String rqString = "INSERT INTO Lieu (nom, adresse, idActivite) VALUES ('"+nom+"', '"+adresse+
+		    			"', "+id+")";
+				stmt.executeUpdate(rqString);
+			} 
+		    catch (SQLException e) {
+				e.printStackTrace();
+			}
+	   }
+		
+	public boolean existLieu(int idActivite, String nom) {
+		String rqString = "Select * from Activite where UPPER(nomLieu)='"+nom.toUpperCase()+"' and id="+idActivite+";";
+		ResultSet resultat = doRequest(rqString);
+		   int i = 0;
+		   try {
+			   while(resultat.next()) {
+				   i++ ;
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return (i==0);
+	}
 		public boolean notExistNotification(String expediteur, String receveur) {
 			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"';";
 			ResultSet resultat = doRequest(rqString);

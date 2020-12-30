@@ -90,7 +90,7 @@
  	  	        <input type="hidden" name="expe" id="expe" value=""/>
      	  	</form>
  			<form method="post" id="form_accepte" action="accepteNotif">
-           		<input type="hidden" name="expe" id="expe" value=""/>
+           		<input type="hidden" name="expe1" id="expe1" value=""/>
      	  	</form>
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
             <tr>
@@ -110,10 +110,14 @@
             		out.print(notif.getExpediteur()); %> vous a envoyé une demande d'ami
             	</td>
             	<td>
-            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_accepte" onclick="setNotif(this)">Accepter</button>
+            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_accepte" onclick="setNotif1(this)">Accepter</button>
             		<script>
 						function setNotif(e) {
 						    document.getElementById("expe").value = e.id ;
+						}
+						
+						function setNotif1(e) {
+						    document.getElementById("expe1").value = e.id ;
 						}
 					</script>
             	</td>
