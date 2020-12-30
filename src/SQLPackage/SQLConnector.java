@@ -86,7 +86,7 @@ public class SQLConnector {
 		
 	
 		
-	public void createActivite(Date date, Time debut, Time fin, String nomLieu, String login) {
+	public void createActivite(String date, String debut, String fin, String nomLieu, String login) {
 			
 			   Connection con = connect();
 			   
@@ -118,8 +118,10 @@ public class SQLConnector {
 			}
 	   }
 		
-	public boolean existLieu(int idActivite, String nom) {
-		String rqString = "Select * from Activite where UPPER(nomLieu)='"+nom.toUpperCase()+"' and id="+idActivite+";";
+	
+	public boolean existLieu(String nom, String date, String debut, String fin, String login) {
+		String rqString = "Select * from Activite where UPPER(nomLieu)='"+nom.toUpperCase()+"' and dateActivite='"+
+				date+"' and debut='"+debut+"' and fin='"+fin+"' and login='"+login+"';";
 		ResultSet resultat = doRequest(rqString);
 		   int i = 0;
 		   try {
@@ -133,7 +135,7 @@ public class SQLConnector {
 			}
 		   
 		
-		return (i==0);
+		return (i!=0);
 	}
 		public boolean notExistNotification(String expediteur, String receveur) {
 			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"';";

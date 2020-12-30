@@ -181,6 +181,29 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>		
 	
+	<servlet>
+		<servlet-name>ShowActiviteServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowActiviteServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.CheckLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<!-- FIN -->
 	
 	
@@ -251,5 +274,14 @@
 		<url-pattern>/suppAmi</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>	
+		<servlet-name>ShowActiviteServlet</servlet-name>
+		<url-pattern>/showActivite</url-pattern>
+	</servlet-mapping>
+		
+	<servlet-mapping>	
+		<servlet-name>CheckLieuServlet</servlet-name>
+		<url-pattern>/checkLieu</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

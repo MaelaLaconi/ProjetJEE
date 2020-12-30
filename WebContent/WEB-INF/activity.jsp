@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ page import="BeanPackage.UserBean" %>
 
 <!DOCTYPE html>
@@ -85,19 +84,22 @@
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
+     	  		<form action="checkLieu" method="post">
      	  	
-				
-     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
-     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
-     	  		
-     	  		<form method="post" action="editProfil">
-     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
-     	  		</form>
-     	  		<form method="post" action="login">
-     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
-     	  		</form>
+	     	  		<h3>Déclaré une activité</h3>
+					<h4> Veuillez saisir le lieu de l'activité</h4>
+					<input name="lieu" type="text" required="required"/>
+					
+					<h4> Veuillez saisir la date de l'activité</h4>
+					<input type="date" id="dateActivite" name="dateActivite"
+			       value="2021-01-05">
+			       
+			       <h4> Veuillez saisir l'heure de debut l'activité</h4>
+			       <input id="debut" type="time" name="debut" value="13:30">
+			       <h4> Veuillez saisir l'heure de fin l'activité</h4>
+			       <input id="fin" type="time" name="fin" value="14:30">
+     	  		   <button class="btn btn-primary" type="submit">Rechercher</button>
+				</form>
      	  	</div>
          <hr>
      	</div>
@@ -118,4 +120,4 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-</html>
+</html>l>
