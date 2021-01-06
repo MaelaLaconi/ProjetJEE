@@ -303,7 +303,7 @@ public class SQLConnector {
 		   }
 		   
 		   /**
-		    * monter l'utilisteur chercher pour ajouter en ami
+		    * montrer l'utilisteur cherché pour ajouter en ami
 		    * @param userSearch
 		    * @return null si le login cherché n'exsite pas, un UserBean sinon
 		    */
