@@ -13,7 +13,7 @@
     <meta name="author" content="">
  
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Modification profil</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -36,11 +36,15 @@
           <li class="nav-item active">
 			<% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
             <a class="nav-link" href="notifications.jsp">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item active">
+          	<form methode="post" action="showAmis" id="form_ami">
+            	<a class="nav-link" href="#" onclick="document.getElementById('form_ami').submit()">Mes amis<span class="sr-only">(current)</span></a>
+          	</form>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+          <li class="nav-item active">
+          	<form methode="post" action="showActivite" id="form_activite">
+            	<a class="nav-link" href="#" onclick="document.getElementById('form_activite').submit()">Activité<span class="sr-only">(current)</span></a>
+          	</form>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -63,16 +67,13 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+          <h1 class="display-3">Je modifie mon profil !</h1>
         </div>
       </div>
 
 
      <div class="container">
      	<div class="row">
-     	  	<h1>Je modifie mon profil</h1>
      	  	<hr>
      	  	</br>
      	  	</br>

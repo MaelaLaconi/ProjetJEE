@@ -83,17 +83,16 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>You are logged !</h1>
+     	  	<h1>Vous êtes connté.e !</h1>
      	  	<hr>
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
      	  	
 				
-     	  		<h3> Your login is : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Your password is : <% out.print(current_user.getPassword()); %> </h3> 
-     	  		<h3> Your name is : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Your last name is : <% out.print(current_user.getNom()); %> </h3> 
+     	  		<h3> Votre login : <% out.print(current_user.getLogin()); %> </h3> 
+     	  		<h3> Votre prénom : <% out.print(current_user.getPrenom()); %> </h3> 
+     	  		<h3> Votre nom : <% out.print(current_user.getNom()); %> </h3> 
      	  		
      	  		<form method="post" action="editProfil">
      	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
