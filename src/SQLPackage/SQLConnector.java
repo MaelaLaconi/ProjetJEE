@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import BeanPackage.Activite;
 import BeanPackage.Notification;
 import BeanPackage.UserBean;
 
@@ -137,6 +138,113 @@ public class SQLConnector {
 		
 		return (i!=0);
 	}
+	
+	
+	/**
+	 * recupere toutes les activites entre aujourd'huit et il y a 10 jours
+	 * @param nom
+	 * @param date
+	 * @param debut
+	 * @param fin
+	 * @param login
+	 * @return
+	 */
+	public List<Activite> getSameDateactivity() {
+		String rqString = "Select * from Activite where  dateActivite <= DATE(NOW()) and dateActivite >= DATE_SUB(DATE(NOW()), INTERVAL 10 DAY) ;";
+		ResultSet resultat = doRequest(rqString);
+		   int i = 0;
+		   List<Activite> list = new ArrayList() ;
+		   try {
+			   while(resultat.next()) {
+				   Activite activite = new Activite() ;
+				   
+				   activite.setNomLieu(resultat.getString("nomLieu"));
+				   activite.setLogin(resultat.getString("login"));
+				   activite.setDebut(resultat.getString("debut"));
+				   activite.setFin(resultat.getString("fin"));
+				   activite.setDate(resultat.getString("dateActivite"));
+				   activite.setId(resultat.getInt("id"));
+
+				   list.add(activite);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return list;
+	}
+	
+	/**
+	 * recupere toutes les activitées d'un utilisateur
+	 * @param login
+	 * @return
+	 */
+	public List<Activite> getActivite(String login) {
+		String rqString = "Select * from Activite where login='"+login+"';";
+		ResultSet resultat = doRequest(rqString);
+		   int i = 0;
+		   List<Activite> list = new ArrayList() ;
+		   try {
+			   while(resultat.next()) {
+				   Activite activite = new Activite() ;
+				   
+				   activite.setNomLieu(resultat.getString("nomLieu"));
+				   activite.setLogin(resultat.getString("login"));
+				   activite.setDebut(resultat.getString("debut"));
+				   activite.setFin(resultat.getString("fin"));
+				   activite.setDate(resultat.getString("dateActivite"));
+				   list.add(activite);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return list;
+	}
+	
+	/**
+	 * retourne les activitées au meme moment que la personne covidée
+	 * @param login
+	 * @return
+	 */
+	public Activite getActiviteCovid(String nomLieu, String date, String deb, String fin, int id, String login) {
+		String rqString = "Select * from Activite where id="+id+" and nomLieu='"+nomLieu+"' and dateActivite ='"+
+				date+"' and debut <= '"+fin+"' and fin >='"+deb+"' and login <> '"+login+"';";
+		ResultSet resultat = doRequest(rqString);
+		   int i = 0;
+		   List<Activite> list = new ArrayList() ;
+		   Activite activite = null ;
+
+		   try {
+			   while(resultat.next()) {
+				   activite = new Activite() ;
+				   activite.setNomLieu(resultat.getString("nomLieu"));
+				   activite.setLogin(resultat.getString("login"));
+				   activite.setDebut(resultat.getString("debut"));
+				   activite.setFin(resultat.getString("fin"));
+				   activite.setDate(resultat.getString("dateActivite"));
+				   list.add(activite);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return activite;
+	}
+	
+	
 		public boolean notExistNotification(String expediteur, String receveur) {
 			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"';";
 			ResultSet resultat = doRequest(rqString);

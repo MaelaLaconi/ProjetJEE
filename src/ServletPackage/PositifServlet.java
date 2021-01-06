@@ -1,6 +1,7 @@
 package ServletPackage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import BeanPackage.Activite;
 import BeanPackage.UserBean;
 import SQLPackage.SQLConnector;
 
@@ -49,8 +51,27 @@ public class PositifServlet extends HttpServlet {
 			List<String> amis = sc.getAmis(current_user.getLogin()) ;
 			for(String s : amis) {
 				sc.createNotification(current_user.getLogin(), s, "positif", "attente");
-				System.out.print("s : "+s);
 			}
+			//toutes les activitées des 10 derniers jours
+			List<Activite> activites = sc.getSameDateactivity();
+			Activite act ;
+			//liste de toutes les activités du current user
+			List<Activite> userActivite = sc.getActivite(current_user.getLogin());
+			
+			List<Activite> lisNotif = new ArrayList() ;
+
+			for(Activite user : userActivite) {
+				for(Activite a : activites) {
+					act = sc.getActiviteCovid(user.getNomLieu(), user.getDate(), user.getDeb(), user.getFin(), a.getId(), user.getLogin());
+					if(act != null && !lisNotif.contains(act)) {
+						lisNotif.add(act) ;
+						sc.createNotification(current_user.getLogin(), a.getLogin(), "positif", "attente");
+					}
+				}
+			}
+			
+			request.getRequestDispatcher( "/WEB-INF/logged.jsp" ).forward( request, response );
+
 		}
 	}
 
