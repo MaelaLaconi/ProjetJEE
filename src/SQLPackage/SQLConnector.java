@@ -356,7 +356,7 @@ public class SQLConnector {
 		public List<Notification> getNotifHistorique(String login){
 			List<Notification> list = new ArrayList() ;
 			String rqString = "Select * from Notification where receveur='"+login+
-					"' and (statut='refuse' or statut='accepte);";
+					"' and (statut='refuse' or statut='accepte');";
 			ResultSet res = doRequest(rqString);
 			Notification notif = null ;
 			   int i = 0;
