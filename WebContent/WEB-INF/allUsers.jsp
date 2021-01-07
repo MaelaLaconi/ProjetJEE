@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <%@ page import="BeanPackage.UserBean" %>
+<%@ page import="BeanPackage.Notification" %>
+
+<%@ page import="SQLPackage.SQLConnector" %>
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
 <head>
@@ -11,7 +17,7 @@
     <meta name="author" content="">
  
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Notifications</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -31,13 +37,13 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+          <li class="nav-item active">
           <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
           	<form methode="post" action="showNotif" id="my_form">
             	<a class="nav-link" href="#" onclick="document.getElementById('my_form').submit()">Notification <% out.print(current_user.getNbNotif()); %><span class="sr-only">(current)</span></a>
           	</form>
           </li>
-         <li class="nav-item active">
+          <li class="nav-item active">
           	<form methode="post" action="showAmis" id="form_ami">
             	<a class="nav-link" href="#" onclick="document.getElementById('form_ami').submit()">Mes amis<span class="sr-only">(current)</span></a>
           	</form>
@@ -58,8 +64,10 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        
+        <!-- Recherche utilistateur -->
+        <form class="form-inline my-2 my-lg-0" method="post" action="recherche">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -67,38 +75,59 @@
 
     <main role="main">
 
-     <!-- Main jumbotron for a primary marketing message or call to action -->
+      <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">J'avertis les personnes risquant d'être inféctées ! </h1>
-               	  		
-          <form method="post" action="jeSuisPositif">
-          <button class="btn btn-primary btn-lg" type="submit">Je suis positif</button>
-          
-          </form>
+          <h1 class="display-3">Tous les utilisateurs</h1>
+          <p>Visionner tous les utilisateurs de covid19 !</p>
         </div>
       </div>
 
 
      <div class="container">
      	<div class="row">
-     	  	<h1>Vous êtes connté.e en tant qu'administrateur !</h1>
      	  	<hr>
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-				
-     	  		<h3> Votre login : <% out.print(current_user.getLogin()); %> </h3> 
-     	  		<h3> Votre prénom : <% out.print(current_user.getPrenom()); %> </h3> 
-     	  		<h3> Votre nom : <% out.print(current_user.getNom()); %> </h3> 
-     	  		
-     	  		<form method="post" action="editProfil">
-     	  			<button class="btn btn-primary" type="submit">Modifier mes informations</button>
-     	  		</form>
-     	  		<form method="post" action="login">
-     	  			<button class="btn btn-danger" type="submit">Deconnexion</button>
-     	  		</form>
+     	  	<form method="post" id="form_supp" action="deleteUser">
+ 	  	        <input type="hidden" name="idUser1" id="idUser1" value=""/>
+     	  	</form>
+ 			<form method="post" id="form_modif" action="accepteNotif">
+           		<input type="hidden" name="idUser" id="idUser" value=""/>
+     	  	</form>
+        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
+           
+             <%
+ 				SQLConnector sc = new SQLConnector();
+            	List list = sc.getAllUser();           
+	            for(int i = 0 ; i < list.size() ; i++){       
+            %>
+            <tr>
+            	<td>
+            		<% UserBean user = (UserBean)list.get(i);
+            		out.print(user.getLogin()); %> 
+            	</td>
+            	<td>
+            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_modif" onclick="setNotif1(this)">Modifier</button>
+            		<script>
+						function setNotif(e) {
+						    document.getElementById("idUser1").value = e.id ;
+						}
+						
+						function setNotif1(e) {
+						    document.getElementById("idUser").value = e.id ;
+						}
+					</script>
+            	</td>
+            	<td>
+            	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_supp" onclick="setNotif(this)">Supprimer</button>
+            	</td>
+            </tr>
+            <% } %>
+            
+            </table>
      	  	</div>
          <hr>
      	</div>
@@ -119,4 +148,5 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
+
 </html>

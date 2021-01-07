@@ -225,6 +225,31 @@ public class SQLConnector {
 		return list;
 	}
 	
+	public List<UserBean> getAllUser() {
+		String rqString = "Select * from User;";
+		ResultSet resultat = doRequest(rqString);
+		   List<UserBean> list = new ArrayList() ;
+		   try {
+			   while(resultat.next()) {
+				   UserBean user = new UserBean() ;
+				   user.setRang(resultat.getString("role"));
+				   user.setLogin(resultat.getString("login"));
+				   user.setNom(resultat.getString("nom"));
+				   user.setPrenom(resultat.getString("prenom"));
+				   user.setPassword(resultat.getString("password"));
+				   user.setDate(resultat.getString("date_naissance"));
+				   list.add(user);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return list;
+	}
 	/**
 	 * retourne les activitées au meme moment que la personne covidée
 	 * @param login

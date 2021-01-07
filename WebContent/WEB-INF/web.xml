@@ -228,6 +228,30 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ShowAllUsersServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowAllUsersServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet>
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<servlet-class>ServletPackage.DeleteUserServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<!-- FIN -->
 	
 	
@@ -316,6 +340,16 @@
 	<servlet-mapping>	
 		<servlet-name>PositifServlet</servlet-name>
 		<url-pattern>/jeSuisPositif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowAllUsersServlet</servlet-name>
+		<url-pattern>/showAllUsers</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>DeleteUserServlet</servlet-name>
+		<url-pattern>/deleteUser</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
