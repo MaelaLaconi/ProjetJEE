@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>testTuto</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- La session devient inactive au bout de 10 min -->
+  <session-config> 
+		<session-timeout>10</session-timeout>
+	</session-config>
+  
+  
+	
+	
+	<!-- servelet ajoutees recemment -->
+	<servlet>
+		<servlet-name>JSP_Servlet</servlet-name>
+		<servlet-class>ServletPackage.JSP_Servlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>BeanServlet</servlet-name>
+		<servlet-class>ServletPackage.BeanServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>ServletPackage.LoginServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>ServletPackage.RegisterServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>EditProfilServlet</servlet-name>
+		<servlet-class>ServletPackage.EditProfilServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>SaveEditServlet</servlet-name>
+		<servlet-class>ServletPackage.SaveEditServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RechercheServlet</servlet-name>
+		<servlet-class>ServletPackage.RechercheServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>NotifServlet</servlet-name>
+		<servlet-class>ServletPackage.NotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>AccepteNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.AccepteNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>RefuseNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.RefuseNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	
+	<servlet>
+		<servlet-name>ShowNotifServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowNotifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+		
+	<servlet>
+		<servlet-name>ShowAmisServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowAmisServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SuppAmiServlet</servlet-name>
+		<servlet-class>ServletPackage.SuppAmiServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>		
+	
+	<servlet>
+		<servlet-name>ShowActiviteServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowActiviteServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CheckLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.CheckLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>SaveLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.SaveLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>PositifServlet</servlet-name>
+		<servlet-class>ServletPackage.PositifServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- FIN -->
+	
+	
+	
+	<!-- dernier ajout -->
+	<servlet-mapping>
+		<servlet-name>JSP_Servlet</servlet-name>
+		<url-pattern>/jsp_forms</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>BeanServlet</servlet-name>
+		<url-pattern>/bean_servlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>EditProfilServlet</servlet-name>
+		<url-pattern>/editProfil</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SaveEditServlet</servlet-name>
+		<url-pattern>/saveEdit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>RechercheServlet</servlet-name>
+		<url-pattern>/recherche</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>NotifServlet</servlet-name>
+		<url-pattern>/envoyerDemande</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>AccepteNotifServlet</servlet-name>
+		<url-pattern>/accepteNotif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>RefuseNotifServlet</servlet-name>
+		<url-pattern>/refuseNotif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowNotifServlet</servlet-name>
+		<url-pattern>/showNotif</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowAmisServlet</servlet-name>
+		<url-pattern>/showAmis</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SuppAmiServlet</servlet-name>
+		<url-pattern>/suppAmi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowActiviteServlet</servlet-name>
+		<url-pattern>/showActivite</url-pattern>
+	</servlet-mapping>
+		
+	<servlet-mapping>	
+		<servlet-name>CheckLieuServlet</servlet-name>
+		<url-pattern>/checkLieu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SaveLieuServlet</servlet-name>
+		<url-pattern>/saveLieu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>PositifServlet</servlet-name>
+		<url-pattern>/jeSuisPositif</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
