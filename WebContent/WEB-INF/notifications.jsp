@@ -96,15 +96,10 @@
            		<input type="hidden" name="expe1" id="expe1" value=""/>
      	  	</form>
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
-            <tr>
-                <td><center>Notification(s)</center></td>
-                <td><center>Accepter</center></td>
-                <td><center>Refuser</center></td>
- 
-            </tr>
+           
              <%
  				SQLConnector sc = new SQLConnector();
-            	List list = sc.getNotifAttente(current_user.getLogin());           
+            	List list = sc.getNotifAttenteAmi(current_user.getLogin());           
 	            for(int i = 0 ; i < list.size() ; i++){       
             %>
             <tr>
@@ -126,6 +121,23 @@
             	</td>
             	<td>
             	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_refuse" onclick="setNotif(this)">Refuser</button>
+            	</td>
+            </tr>
+            <% } %>
+            
+            <% list = sc.getNotifCovid(current_user.getLogin());           
+            	for(int i = 0 ; i < list.size() ; i++){       
+       		%>
+       		
+       		 <tr>
+            	<td>
+            		Vous avez été en contact avec <% Notification notif = (Notification)list.get(i);
+            		out.print(notif.getExpediteur()); %> qui est positif au covid
+            	</td>
+            	<td>
+            		
+            	</td>
+            	<td>
             	</td>
             </tr>
             <% } %>

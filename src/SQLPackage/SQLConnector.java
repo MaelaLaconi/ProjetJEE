@@ -303,9 +303,34 @@ public class SQLConnector {
 			updateUser(rqString);
 		}
 		
-		public List<Notification> getNotifAttente(String login){
+		public List<Notification> getNotifAttenteAmi(String login){
 			List<Notification> list = new ArrayList() ;
-			String rqString = "Select * from Notification where receveur='"+login+"' and statut='attente';";
+			String rqString = "Select * from Notification where receveur='"+login+"' and statut='attente' and type='demandeAmi';";
+			ResultSet res = doRequest(rqString);
+			Notification notif = null ;
+			   int i = 0;
+			   try {
+				   while(res.next()) {
+					   notif = new Notification();
+					   notif.setExpediteur(res.getString("expediteur"));
+					   notif.setReceveur(res.getString("receveur"));
+					   notif.setType(res.getString("type"));
+					   notif.setStatut(res.getString("statut"));
+					   list.add(notif);
+				}
+			   }
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (list);
+		}
+		
+		public List<Notification> getNotifCovid(String login){
+			List<Notification> list = new ArrayList() ;
+			String rqString = "Select * from Notification where receveur='"+login+"' and type='positif' ;";
 			ResultSet res = doRequest(rqString);
 			Notification notif = null ;
 			   int i = 0;
