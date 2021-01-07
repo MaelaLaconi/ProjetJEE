@@ -53,7 +53,9 @@
               <form methode="post" action="showAllUsers" id="editUser">
             	<a class="dropdown-item" href="#" onclick="document.getElementById('editUser').submit()">Utilisateur</a>
               </form>
-              <a class="dropdown-item" href="#">Activite</a>
+              <form methode="post" action="showAllActivites" id="editActivite">
+              	<a class="dropdown-item" href="#" onclick="document.getElementById('editActivite').submit()">Activite</a>
+              </form>
               <a class="dropdown-item" href="#">Lieu</a>
             </div>
           </li>

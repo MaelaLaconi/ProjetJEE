@@ -1,28 +1,23 @@
 package ServletPackage;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import BeanPackage.UserBean;
-import SQLPackage.SQLConnector;
 /**
- * Servlet implementation class deleteUserServlet
+ * Servlet implementation class ShowAllActivitesServlet
  */
-@WebServlet("/deleteUserServlet")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/ShowAllActivitesServlet")
+public class ShowAllActivitesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public ShowAllActivitesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +29,7 @@ public class DeleteUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");	
 		
-		HttpSession session = request.getSession();
-		
-		UserBean current_user = (UserBean) session.getAttribute("current_user");
-		
-		if(current_user == null) {
-			
-			request.getRequestDispatcher( "/WEB-INF/bean.jsp" ).forward( request, response );
-		}
-		else{	
-			SQLConnector sc = new SQLConnector() ;
-			
-			String ligne = request.getParameter("idUser1") ;
-			int nbLigne = Integer.parseInt(ligne);
-			List list = sc.getAllUser();
-			UserBean user = (UserBean)list.get(nbLigne);
-			sc.deleteUser(user.getLogin());
-			request.getRequestDispatcher( "/WEB-INF/allUsers.jsp" ).forward( request, response );
-
-		}
-		}
+		request.getRequestDispatcher( "/WEB-INF/allActivites.jsp" ).forward( request, response );	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

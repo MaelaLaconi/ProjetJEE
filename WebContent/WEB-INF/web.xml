@@ -252,6 +252,31 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ShowAllActivitesServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowAllActivitesServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>DeleteActiviteServlet</servlet-name>
+		<servlet-class>ServletPackage.DeleteActiviteServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<!-- FIN -->
 	
 	
@@ -352,4 +377,13 @@
 		<url-pattern>/deleteUser</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>	
+		<servlet-name>ShowAllActivitesServlet</servlet-name>
+		<url-pattern>/showAllActivites</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>DeleteActiviteServlet</servlet-name>
+		<url-pattern>/deleteActivite</url-pattern>
+	</servlet-mapping>
 </web-app>

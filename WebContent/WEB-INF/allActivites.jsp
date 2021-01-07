@@ -3,6 +3,7 @@
    
 <%@ page import="BeanPackage.UserBean" %>
 <%@ page import="BeanPackage.Notification" %>
+<%@ page import="BeanPackage.Activite" %>
 
 <%@ page import="SQLPackage.SQLConnector" %>
 <%@ page import ="java.util.ArrayList"%>
@@ -17,7 +18,7 @@
     <meta name="author" content="">
  
 
-    <title>Tous les utilisateurs</title>
+    <title>Toutes les activités</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -78,8 +79,8 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Tous les utilisateurs</h1>
-          <p>Visionner tous les utilisateurs de covid19 !</p>
+          <h1 class="display-3">Toutes les activités</h1>
+          <p>Visionner toutes les activités des utilisateurs !</p>
         </div>
       </div>
 
@@ -91,7 +92,7 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-     	  	<form method="post" id="form_supp" action="deleteUser">
+     	  	<form method="post" id="form_supp" action="deleteActivite">
  	  	        <input type="hidden" name="idUser1" id="idUser1" value=""/>
      	  	</form>
  			<form method="post" id="form_modif" action="accepteNotif">
@@ -101,13 +102,14 @@
            
              <%
  				SQLConnector sc = new SQLConnector();
-            	List list = sc.getAllUser();           
+            	List list = sc.getAllActivites();           
 	            for(int i = 0 ; i < list.size() ; i++){       
             %>
             <tr>
             	<td>
-            		<% UserBean user = (UserBean)list.get(i);
-            		out.print(user.getLogin()); %> 
+            		Activité du <% Activite activite = (Activite)list.get(i);
+            		out.print(activite.getDate()); %> à <%out.print(activite.getNomLieu()); %> 
+            		par <%out.print(activite.getLogin()); %>
             	</td>
             	<td>
             		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_modif" onclick="setNotif1(this)">Modifier</button>
@@ -149,4 +151,4 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 
-</html>
+</html>l>

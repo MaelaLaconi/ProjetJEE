@@ -250,6 +250,32 @@ public class SQLConnector {
 		
 		return list;
 	}
+	
+	public List<Activite> getAllActivites() {
+		String rqString = "Select * from Activite;";
+		ResultSet resultat = doRequest(rqString);
+		   List<Activite> list = new ArrayList() ;
+		   try {
+			   while(resultat.next()) {
+				   Activite activite = new Activite() ;
+				   activite.setId(resultat.getInt("id"));
+				   activite.setDate(resultat.getString("dateActivite"));
+				   activite.setLogin(resultat.getString("login"));
+				   activite.setNomLieu(resultat.getString("nomLieu"));
+				   activite.setFin(resultat.getString("fin"));
+				   activite.setDebut(resultat.getString("debut"));
+				   list.add(activite);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return list;
+	}
 	/**
 	 * retourne les activitées au meme moment que la personne covidée
 	 * @param login
@@ -520,7 +546,7 @@ public class SQLConnector {
 				updateUser(rqString);
 		   }
 		   
-		   public void deleteActivite(String id) {
+		   public void deleteActivite(int id) {
                     String rqString = "DELETE FROM Activite WHERE id = " + id + " ; ";
                     updateUser(rqString);
 		   } 
