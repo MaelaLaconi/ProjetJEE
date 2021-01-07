@@ -67,10 +67,11 @@ public class SaveEditServlet extends HttpServlet {
 			rqString = "UPDATE User SET date_naissance='"+newNaissance+"' WHERE login='"+oldLogin+"'";
 			sc.updateUser(rqString);
 			
-			current_user.setLogin(newLogin);
-			rqString = "UPDATE User SET login='"+newLogin+"' WHERE login='"+oldLogin+"'";
-			sc.updateUser(rqString);
-	
+			if(!sc.existLogin(newLogin)) {
+				current_user.setLogin(newLogin);
+				rqString = "UPDATE User SET login='"+newLogin+"' WHERE login='"+oldLogin+"'";
+				sc.updateUser(rqString);
+			}
 			request.getRequestDispatcher( "/WEB-INF/logged.jsp" ).forward( request, response );
 		}	}
 

@@ -136,6 +136,24 @@ public class SQLConnector {
 		return (i!=0);
 	}
 	
+	public boolean existLogin(String login) {
+		String rqString = "Select * from User where UPPER(login)='"+login.toUpperCase()+"';";
+		ResultSet resultat = doRequest(rqString);
+		   int i = 0;
+		   try {
+			   while(resultat.next()) {
+				   i++ ;
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return (i!=0);
+	}
+	
 	
 	/**
 	 * recupere toutes les activites entre aujourd'huit et il y a 10 jours

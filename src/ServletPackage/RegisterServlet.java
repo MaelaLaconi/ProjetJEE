@@ -46,9 +46,9 @@ public class RegisterServlet extends HttpServlet {
 		SQLConnector sc = new SQLConnector();
 		
 		if((login != "") && (login != null) && (password != "") && (password != null) ) {
-			
-			sc.createUser(login, password, nom, prenom, dateNaissance);
-
+			if(!sc.existLogin(login)) {
+				sc.createUser(login, password, nom, prenom, dateNaissance);
+			}
 		}
 		else {
 			
