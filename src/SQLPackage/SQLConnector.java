@@ -299,7 +299,7 @@ public class SQLConnector {
 		
 		//a faire
 		public void supprimerAmi(String n) {
-			String rqString = "DELETE from Notification WHERE receveur='"+n+"' or expediteur ='"+n+"' and type='demandeAmi'";
+			String rqString = "DELETE from Notification WHERE (receveur='"+n+"' or expediteur ='"+n+"') and type='demandeAmi'";
 			updateUser(rqString);
 		}
 		
@@ -486,12 +486,12 @@ public class SQLConnector {
 			         arret("Impossible de charger le pilote jdbc");
 			   }
 
-			   affiche("connexion a la base de données");
+			   //affiche("connexion a la base de données");
 			   
 			   try {
 			         String DBurl = "jdbc:mysql://localhost/Jee_database";
 			         con = DriverManager.getConnection(DBurl,"projetTest","projetTest");
-			         affiche("connexion réussie");
+			         //affiche("connexion réussie");
 			   } 
 			   catch (SQLException e) {
 			         arret("Connection à la base de données impossible");

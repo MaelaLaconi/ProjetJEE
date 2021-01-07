@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
    
 <%@ page import="BeanPackage.UserBean" %>
-<%@ page import="BeanPackage.Notification" %>
 
 <%@ page import="SQLPackage.SQLConnector" %>
 <%@ page import ="java.util.ArrayList"%>
@@ -89,8 +88,8 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-     	  	<form method="post" id="my_form" action="suppAmi">
- 	  	        <input type="hidden" name="expe" id="expe" value=""/>
+     	  	<form method="post" id="formAmi" action="suppAmi">
+ 	  	        <input type="hidden" name="idAmi" id="idAmi" value=""/>
      	  	</form>
  			
         		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
@@ -105,10 +104,10 @@
             		<% out.print(list.get(i));%> est votre ami
             	</td>
             	<td>
-            	    <button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-danger" form="my_form" onclick="setNotif(this)">Supprimer</button>
+            	    <button type="submit" name="supp" id =<%out.print(i);%> class="btn btn-danger" form="formAmi" onclick="setSupp(this)">Supprimer</button>
             		<script>
-						function setNotif(e) {
-						    document.getElementById("expe").value = e.id ;
+						function setSupp(e) {
+						    document.getElementById("idAmi").value = e.id ;
 						}
 					</script>
             	</td>
