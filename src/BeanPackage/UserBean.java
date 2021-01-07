@@ -11,13 +11,19 @@ public class UserBean  {
 	private String rang;  //basic user or admin
 	private String password;
 	private String login;
+	private String date ;
 	
-	public UserBean() {}
+	public UserBean() {
+		date="" ;
+	}
 
 	public int getId() {
 		return this.id;
 	}
 	
+	public String getDate() {
+		return this.date ;
+	}
 	public String getNom() {
 		return this.nom;
 	}
@@ -60,6 +66,10 @@ public class UserBean  {
 	
 	public void setRang( String rang ) {
 		this.rang = rang;
+	}
+	
+	public void setDate( String date ) {
+		this.date = date;
 	}
 	
 	public int getNbNotif() {

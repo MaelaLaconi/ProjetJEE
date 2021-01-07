@@ -92,6 +92,10 @@
 	     	  		<h3> Your new last name is : </h3> 
   			     	<input name="newLastName" type="text" required="required"/>
      	  		
+     	  			<h3> Date de naissance</h3>
+					<input type="date" id="newNaissance" name="newNaissance"
+			       value="1999-01-05">
+				</div>
      	  			<button class="btn btn-primary" type="submit">Enregister</button>
      	  			
      	  		</form>

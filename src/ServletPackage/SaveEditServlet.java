@@ -47,6 +47,7 @@ public class SaveEditServlet extends HttpServlet {
 			String newLastName = request.getParameter("newLastName") ;
 			String newPw = request.getParameter("newPw") ;
 			String newLogin = request.getParameter("newLogin") ;
+			String newNaissance = request.getParameter("newNaissance");
 			int id = current_user.getId();
 			
 			current_user.setNom(newLastName);
@@ -62,10 +63,14 @@ public class SaveEditServlet extends HttpServlet {
 			rqString = "UPDATE User SET password='"+newPw+"' WHERE login='"+oldLogin+"'";
 			sc.updateUser(rqString);
 			
+			current_user.setDate(newNaissance);
+			rqString = "UPDATE User SET date_naissance='"+newNaissance+"' WHERE login='"+oldLogin+"'";
+			sc.updateUser(rqString);
+			
 			current_user.setLogin(newLogin);
 			rqString = "UPDATE User SET login='"+newLogin+"' WHERE login='"+oldLogin+"'";
 			sc.updateUser(rqString);
-			
+	
 			request.getRequestDispatcher( "/WEB-INF/logged.jsp" ).forward( request, response );
 		}	}
 
