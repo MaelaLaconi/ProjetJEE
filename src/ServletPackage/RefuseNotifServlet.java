@@ -49,7 +49,7 @@ public class RefuseNotifServlet extends HttpServlet {
 		}
 		else{
 			SQLConnector sc = new SQLConnector();
-			List list = sc.getNotifAttente(current_user.getLogin()); 
+			List list = sc.getNotifAttenteAmi(current_user.getLogin()); 
 			Notification notif = (Notification) list.get(nbLigne);
 			sc.refuseNotifUser(notif);
 			request.getRequestDispatcher( "/WEB-INF/notifications.jsp" ).forward( request, response );

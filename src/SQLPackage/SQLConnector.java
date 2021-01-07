@@ -246,7 +246,7 @@ public class SQLConnector {
 	
 	
 		public boolean notExistNotification(String expediteur, String receveur) {
-			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"';";
+			String rqString = "Select * from Notification where expediteur='"+expediteur+"' and receveur='"+receveur+"' and type='demandeAmi';";
 			ResultSet resultat = doRequest(rqString);
 			   int i = 0;
 			   try {

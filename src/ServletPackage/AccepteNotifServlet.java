@@ -54,9 +54,8 @@ public class AccepteNotifServlet extends HttpServlet {
 		}
 		else{
 			SQLConnector sc = new SQLConnector();
-			List list = sc.getNotifAttente(current_user.getLogin()); 
+			List list = sc.getNotifAttenteAmi(current_user.getLogin()); 
 			Notification notif = (Notification) list.get(nbLigne);
-			System.out.print("Pour "+ notif.getExpediteur()) ;
 			sc.accepteNotifUser(notif);
 			request.getRequestDispatcher( "/WEB-INF/notifications.jsp" ).forward( request, response );
 
