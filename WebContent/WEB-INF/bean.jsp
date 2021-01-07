@@ -129,7 +129,12 @@
 				    <label for="prenom">Prénom :</label>
 				    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Enter your firstname here">
 				</div>
+				<div class="form-group">
 				
+				<label for= "naissance"> Date de naissance</label>
+					<input type="date" id="naissance" name="naissance"
+			       value="1999-01-05">
+				</div>
 				
 				
 				  <button type="submit" class="btn btn-primary">Register</button>

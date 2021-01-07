@@ -41,13 +41,13 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
-		
+		String dateNaissance = request.getParameter("naissance") ;
 		HttpSession session = request.getSession();
 		SQLConnector sc = new SQLConnector();
 		
 		if((login != "") && (login != null) && (password != "") && (password != null) ) {
 			
-			sc.createUser(login, password, nom, prenom);
+			sc.createUser(login, password, nom, prenom, dateNaissance);
 
 		}
 		else {

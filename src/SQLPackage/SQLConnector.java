@@ -44,17 +44,14 @@ public class SQLConnector {
 			   return user;
 		   }
 		   
-		public void createUser(String login, String password, String nom, String prenom) {
+		public void createUser(String login, String password, String nom, String prenom, String naissance) {
 			
 			   Connection con = connect();
 			   
 			    try {
-			    	java.sql.Timestamp date = new java.sql.Timestamp(1999, 9, 25, 00, 00, 00, 00) ;
-			    	
-			    	
 			    	Statement stmt = con.createStatement();
 			    	String rqString = "INSERT INTO User (role,login,password,nom,prenom,date_naissance) VALUES ('basic_user','"+
-							   login+"','"+password+"','"+prenom+"','"+nom+"','"+date+"')";
+							   login+"','"+password+"','"+prenom+"','"+nom+"','"+naissance+"')";
 					stmt.executeUpdate(rqString);
 				} 
 			    catch (SQLException e) {
@@ -264,7 +261,7 @@ public class SQLConnector {
 		}
 		   
 		public int getNbNotifUser(String loginUser) {
-			String rqString = "Select * from Notification where receveur='"+loginUser+"' and statut='attente';";
+			String rqString = "Select * from Notification where receveur='"+loginUser+"' and statut='attente' and type='demandeAmi';";
 			ResultSet resultat = doRequest(rqString);
 			   int i = 0;
 			   try {
@@ -470,6 +467,25 @@ public class SQLConnector {
 			   return user;
 			   
 		   }
+		   
+		 
+		   //FONCTION POUR LES ADMINISTRATEUR
+		   
+		   public void deleteUser(String login) {
+	    
+	            String rqString = "DELETE FROM User WHERE login = '" + login + "'; ";
+				updateUser(rqString);
+		   }
+		   
+		   public void deleteActivite(String id) {
+                    String rqString = "DELETE FROM Activite WHERE id = " + id + " ; ";
+                    updateUser(rqString);
+		   } 
+		   
+		   public void deleteLieu(String id) {
+               String rqString = "DELETE FROM Lieu WHERE id = " + id + " ; ";
+               updateUser(rqString);
+	   } 
 		 
 		   /**
 		    * connection a la db
