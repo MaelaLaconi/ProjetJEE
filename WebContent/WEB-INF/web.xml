@@ -277,6 +277,30 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+		<servlet>
+		<servlet-name>ShowAllLieuxServlet</servlet-name>
+		<servlet-class>ServletPackage.ShowAllLieuxServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>DeleteLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.DeleteLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<!-- FIN -->
 	
 	
@@ -385,5 +409,15 @@
 	<servlet-mapping>	
 		<servlet-name>DeleteActiviteServlet</servlet-name>
 		<url-pattern>/deleteActivite</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>ShowAllLieuxServlet</servlet-name>
+		<url-pattern>/showAllLieux</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>DeleteLieuServlet</servlet-name>
+		<url-pattern>/deleteLieu</url-pattern>
 	</servlet-mapping>
 </web-app>

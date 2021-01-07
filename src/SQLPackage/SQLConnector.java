@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import BeanPackage.Activite;
+import BeanPackage.Lieu;
 import BeanPackage.Notification;
 import BeanPackage.UserBean;
 
@@ -250,7 +251,30 @@ public class SQLConnector {
 		
 		return list;
 	}
-	
+	//***********************************************************
+	public List<Lieu> getAllLieux() {
+		String rqString = "Select * from Lieu;";
+		ResultSet resultat = doRequest(rqString);
+		   List<Lieu> list = new ArrayList() ;
+		   try {
+			   while(resultat.next()) {
+				   Lieu lieu = new Lieu() ;
+				   lieu.setId(resultat.getInt("id"));
+				   lieu.setAdr(resultat.getString("adresse"));
+				   lieu.setNom(resultat.getString("nom"));
+				 
+				   list.add(lieu);
+
+				   }
+			} 
+		   catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		
+		return list;
+	}
 	public List<Activite> getAllActivites() {
 		String rqString = "Select * from Activite;";
 		ResultSet resultat = doRequest(rqString);
@@ -551,7 +575,7 @@ public class SQLConnector {
                     updateUser(rqString);
 		   } 
 		   
-		   public void deleteLieu(String id) {
+		   public void deleteLieu(int id) {
                String rqString = "DELETE FROM Lieu WHERE id = " + id + " ; ";
                updateUser(rqString);
 	   } 
