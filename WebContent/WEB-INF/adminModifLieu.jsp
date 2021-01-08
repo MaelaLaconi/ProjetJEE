@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
 <%@ page import="BeanPackage.UserBean" %>
-<%@ page import="BeanPackage.Notification" %>
-<%@ page import="BeanPackage.Activite" %>
-<%@ page import="BeanPackage.Lieu" %>
-
-<%@ page import="SQLPackage.SQLConnector" %>
-<%@ page import ="java.util.ArrayList"%>
-<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
 <head>
@@ -19,7 +11,7 @@
     <meta name="author" content="">
  
 
-    <title>Tous les lieux</title>
+    <title>Modification lieu</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -31,7 +23,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+ <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<form methode="post" action="bean_servlet" id="formHome">
       	<a class="navbar-brand" href="#" onclick="document.getElementById('formHome').submit()">Home</a>
       </form>
@@ -82,13 +74,13 @@
         </form>
       </div>
     </nav>
+
     <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Toutes les activités</h1>
-          <p>Visionner toutes les activités des utilisateurs !</p>
+          <h1 class="display-3">Modifier un lieu</h1>
         </div>
       </div>
 
@@ -99,44 +91,19 @@
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
+     	  		<form action="saveEditLieuAdmin" method="post">
      	  	
-     	  	<form method="post" id="form_supp" action="deleteLieu">
- 	  	        <input type="hidden" name="idUser1" id="idUser1" value=""/>
-     	  	</form>
- 			<form method="post" id="form_modif" action="adminModifLieu">
-           		<input type="hidden" name="idUser" id="idUser" value=""/>
-     	  	</form>
-        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
-           
-             <%
- 				SQLConnector sc = new SQLConnector();
-            	List list = sc.getAllLieux();           
-	            for(int i = 0 ; i < list.size() ; i++){       
-            %>
-            <tr>
-            	<td>
-            		<% Lieu lieu = (Lieu)list.get(i);
-            		out.print(lieu.getNom()); %> à <%out.print(lieu.getAdr()); %> 
-            	</td>
-            	<td>
-            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_modif" onclick="setNotif1(this)">Modifier</button>
-            		<script>
-						function setNotif(e) {
-						    document.getElementById("idUser1").value = e.id ;
-						}
-						
-						function setNotif1(e) {
-						    document.getElementById("idUser").value = e.id ;
-						}
-					</script>
-            	</td>
-            	<td>
-            	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_supp" onclick="setNotif(this)">Supprimer</button>
-            	</td>
-            </tr>
-            <% } %>
-            
-            </table>
+					</br>
+					
+					<h4> Veuillez saisir le nom de la ville</h4>
+					<input name="nom" id="nom" type="text" required="required"/>
+					
+					<h4> Veuillez saisir l'adresse</h4>
+					<input name="adr" id="adr"  type="text" required="required"/>
+					
+
+     	  		   <button class="btn btn-primary" type="submit">Modifier</button>
+				</form>
      	  	</div>
          <hr>
      	</div>
@@ -157,5 +124,4 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-
 </html>

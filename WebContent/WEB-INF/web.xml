@@ -351,6 +351,30 @@
 
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>AdminModifLieuServlet</servlet-name>
+		<servlet-class>ServletPackage.AdminModifLieuServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>SaveEditLieuAdminServlet</servlet-name>
+		<servlet-class>ServletPackage.SaveEditLieuAdminServlet</servlet-class>
+		
+		<init-param>
+			<param-name>auteur</param-name> 
+			<param-value>Coyote</param-value> 
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<!-- FIN -->
 	
 	
@@ -489,5 +513,15 @@
 	<servlet-mapping>	
 		<servlet-name>SaveEditActiviteAdminServlet</servlet-name>
 		<url-pattern>/saveEditActiviteAdmin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>AdminModifLieuServlet</servlet-name>
+		<url-pattern>/adminModifLieu</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>	
+		<servlet-name>SaveEditLieuAdminServlet</servlet-name>
+		<url-pattern>/saveEditLieuAdmin</url-pattern>
 	</servlet-mapping>
 </web-app>
