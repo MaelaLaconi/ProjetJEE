@@ -25,13 +25,15 @@
 </head>
 <body>
  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Navbar</a>
+	<form methode="post" action="bean_servlet" id="formHome">
+      	<a class="navbar-brand" href="#" onclick="document.getElementById('formHome').submit()">Home</a>
+      </form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
+       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <% UserBean current_user = (UserBean) session.getAttribute("current_user"); %>
           	<form methode="post" action="showNotif" id="my_form">
@@ -48,14 +50,22 @@
             	<a class="nav-link" href="#" onclick="document.getElementById('form_activite').submit()">Activité<span class="sr-only">(current)</span></a>
           	</form>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <%if(current_user.getRang().equals("admin")){ %>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <form methode="post" action="showAllUsers" id="editUser">
+            	<a class="dropdown-item" href="#" onclick="document.getElementById('editUser').submit()">Utilisateur</a>
+              </form>
+              <form methode="post" action="showAllActivites" id="editActivite">
+              	<a class="dropdown-item" href="#" onclick="document.getElementById('editActivite').submit()">Activite</a>
+              </form>
+              <form methode="post" action="showAllLieux" id="editLieu">
+              	<a class="dropdown-item" href="#" onclick="document.getElementById('editLieu').submit()">Lieu</a>
+              </form>
             </div>
           </li>
+          <%} %>
         </ul>
         
         <!-- Recherche utilistateur -->
