@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
 <%@ page import="BeanPackage.UserBean" %>
-<%@ page import="BeanPackage.Notification" %>
-<%@ page import="BeanPackage.Activite" %>
-
-<%@ page import="SQLPackage.SQLConnector" %>
-<%@ page import ="java.util.ArrayList"%>
-<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
 <head>
@@ -18,7 +11,7 @@
     <meta name="author" content="">
  
 
-    <title>Toutes les activités</title>
+    <title>Modification activité</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -30,11 +23,10 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+ <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<form methode="post" action="bean_servlet" id="formHome">
       	<a class="navbar-brand" href="#" onclick="document.getElementById('formHome').submit()">Home</a>
-      </form>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      </form>      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -87,8 +79,7 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Toutes les activités</h1>
-          <p>Visionner toutes les activités des utilisateurs !</p>
+          <h1 class="display-3">Modifier une activité !</h1>
         </div>
       </div>
 
@@ -99,45 +90,24 @@
      	  	</br>
      	  	</br>
      	  	<div class="col-md-12">
+     	  		<form action="saveEditActiviteAdmin" method="post">
      	  	
-     	  	<form method="post" id="form_supp" action="deleteActivite">
- 	  	        <input type="hidden" name="idUser1" id="idUser1" value=""/>
-     	  	</form>
- 			<form method="post" id="form_modif" action="adminModifActivite">
-           		<input type="hidden" name="idUser" id="idUser" value=""/>
-     	  	</form>
-        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
-           
-             <%
- 				SQLConnector sc = new SQLConnector();
-            	List list = sc.getAllActivites();           
-	            for(int i = 0 ; i < list.size() ; i++){       
-            %>
-            <tr>
-            	<td>
-            		Activité du <% Activite activite = (Activite)list.get(i);
-            		out.print(activite.getDate()); %> à <%out.print(activite.getNomLieu()); %> 
-            		par <%out.print(activite.getLogin()); %>
-            	</td>
-            	<td>
-            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_modif" onclick="setNotif1(this)">Modifier</button>
-            		<script>
-						function setNotif(e) {
-						    document.getElementById("idUser1").value = e.id ;
-						}
-						
-						function setNotif1(e) {
-						    document.getElementById("idUser").value = e.id ;
-						}
-					</script>
-            	</td>
-            	<td>
-            	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_supp" onclick="setNotif(this)">Supprimer</button>
-            	</td>
-            </tr>
-            <% } %>
-            
-            </table>
+					<h4> Veuillez saisir le lieu de l'activité</h4>
+					<input id="lieu" name="lieu" type="text" required="required"/>
+					
+					<h4> Veuillez saisir le login de la personne associée à l'activité</h4>
+					<input id="login" name="login" type="text" required="required"/>
+					
+					<h4> Veuillez saisir la date de l'activité</h4>
+					<input type="date" id="dateActivite" name="dateActivite"
+			       value="2021-01-05">
+			       
+			       <h4> Veuillez saisir l'heure de debut l'activité</h4>
+			       <input id="debut" type="time" name="debut" value="13:30">
+			       <h4> Veuillez saisir l'heure de fin l'activité</h4>
+			       <input id="fin" type="time" name="fin" value="14:30">
+     	  		   <button class="btn btn-primary" type="submit">Modifier</button>
+				</form>
      	  	</div>
          <hr>
      	</div>
@@ -158,5 +128,4 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-
 </html>
