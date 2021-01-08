@@ -469,6 +469,30 @@ public class SQLConnector {
 			return (list);
 		}
 		
+		public List<Notification> getNotifSupp(String login){
+			List<Notification> list = new ArrayList() ;
+			String rqString = "Select * from Notification where receveur='"+login+
+					"' and type='suppression';";
+			ResultSet res = doRequest(rqString);
+			   try {
+				   while(res.next()) {
+					   Notification notif = new Notification();
+					   notif.setExpediteur(res.getString("expediteur"));
+					   notif.setReceveur(res.getString("receveur"));
+					   notif.setType(res.getString("type"));
+					   notif.setStatut(res.getString("statut"));
+					   list.add(notif);
+				}
+			   }
+			   catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			   
+			
+			return (list);
+		}
+		
 		public List<String> getAmis(String login){
 			List<String> list = new ArrayList() ;
 			String rqString2 = "Select * from Notification where receveur='"+login+"' and statut='accepte' and type='demandeAmi';";
