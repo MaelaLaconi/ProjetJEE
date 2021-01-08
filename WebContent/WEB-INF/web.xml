@@ -16,7 +16,10 @@
 	</session-config>
   
   
-	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/error404.jsp</location>
+	</error-page>
 	
 	<!-- servelet ajoutees recemment -->
 	<servlet>
