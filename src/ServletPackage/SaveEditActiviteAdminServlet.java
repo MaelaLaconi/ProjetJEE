@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import BeanPackage.Activite;
 import BeanPackage.UserBean;
 import SQLPackage.SQLConnector;
 
 /**
- * Servlet implementation class SaveEditUserAdminServlet
+ * Servlet implementation class SaveEditActiviteAdminServlet
  */
-@WebServlet("/SaveEditUserAdminServlet")
-public class SaveEditUserAdminServlet extends HttpServlet {
+@WebServlet("/SaveEditActiviteAdminServlet")
+public class SaveEditActiviteAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SaveEditUserAdminServlet() {
+    public SaveEditActiviteAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,49 +32,50 @@ public class SaveEditUserAdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");	
+response.setContentType("text/html");	
 		
 		HttpSession session = request.getSession();
 		
 		UserBean current_user = (UserBean) session.getAttribute("current_user");
-		UserBean current_edit = (UserBean) session.getAttribute("UserEdit");
+		Activite current_edit = (Activite) session.getAttribute("ActiviteEdit");
 
 		if(current_user == null) {
 			
 			request.getRequestDispatcher( "/WEB-INF/bean.jsp" ).forward( request, response );
 		}
 		else{
-			String oldLogin = current_edit.getLogin();
-			String newName = request.getParameter("newName") ;
-			String newLastName = request.getParameter("newLastName") ;
-			String newPw = request.getParameter("newPw") ;
-			String newLogin = request.getParameter("newLogin") ;
-			String newNaissance = request.getParameter("newNaissance");
+			String newLieu = request.getParameter("lieu") ;
+			String newDateActivite = request.getParameter("dateActivite") ;
+			String newDebut = request.getParameter("debut") ;
+			String newFin = request.getParameter("fin") ;
+			String newLogin = request.getParameter("login") ;
+
+			int id = current_edit.getId();
 			
-			current_edit.setNom(newLastName);
-			String rqString = "UPDATE User SET nom='"+newLastName+"' WHERE login='"+oldLogin+"'";
+			current_edit.setDate(newDateActivite);
+			String rqString = "UPDATE Activite SET dateActivite='"+newDateActivite+"' WHERE id="+id+"";
 			SQLConnector sc = new SQLConnector() ;
 			sc.updateUser(rqString);
 			
-			current_edit.setPrenom(newName);
-			rqString = "UPDATE User SET prenom='"+newName+"' WHERE login='"+oldLogin+"'";
+			current_edit.setDebut(newDebut) ;
+			rqString = "UPDATE Activite SET debut='"+newDebut+"' WHERE id="+id+"";
 			sc.updateUser(rqString);
 			
-			current_edit.setPassword(newPw);
-			rqString = "UPDATE User SET password='"+newPw+"' WHERE login='"+oldLogin+"'";
+			current_edit.setFin(newFin) ;
+			rqString = "UPDATE Activite SET fin='"+newFin+"' WHERE id="+id+"";
+			sc.updateUser(rqString);
+		
+			
+			current_edit.setNomLieu(newLieu);
+			rqString = "UPDATE Activite SET nomLieu='"+newLieu+"' WHERE id="+id+"";
 			sc.updateUser(rqString);
 			
-			current_edit.setDate(newNaissance);
-			rqString = "UPDATE User SET date_naissance='"+newNaissance+"' WHERE login='"+oldLogin+"'";
+			current_edit.setLogin(newLogin);
+			rqString = "UPDATE Activite SET login='"+newLogin+"' WHERE id="+id+"";
 			sc.updateUser(rqString);
 			
-			if(!sc.existLogin(newLogin)) {
-				current_edit.setLogin(newLogin);
-				rqString = "UPDATE User SET login='"+newLogin+"' WHERE login='"+oldLogin+"'";
-				sc.updateUser(rqString);
-			}
-			request.getRequestDispatcher( "/WEB-INF/allUsers.jsp" ).forward( request, response );
-		}		}
+			request.getRequestDispatcher( "/WEB-INF/allActivites.jsp" ).forward( request, response );
+		}			}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
