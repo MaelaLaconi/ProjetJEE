@@ -88,14 +88,16 @@
 
      <div class="container">
      	<div class="row">
-     	  	<h1>Voulez vous ajouter cette personne à vos amis ?</h1>
-     	  	
-     	  	<hr>
-     	  	</br>
-     	  	</br>
+     	  
      	  	<div class="col-md-12">
      	  	
-				<% UserBean current_search = (UserBean) session.getAttribute("current_search"); %>
+				<% UserBean current_search = (UserBean) session.getAttribute("current_search"); 
+				if(current_search != null){%>
+					<h1>Voulez vous ajouter cette personne à vos amis ?</h1>
+     	  	
+		   	  	<hr>
+		   	  	</br>
+		   	  	</br>
      	  		<h3> Login : <% out.print(current_search.getLogin()); %> </h3> 
      	  		<h3> Prénom : <% out.print(current_search.getPrenom()); %> </h3> 
      	  		<h3> Nom : <% out.print(current_search.getNom()); %> </h3> 
@@ -106,6 +108,9 @@
      	  		<form method="post" action="bean_servlet">
      	  			<button class="btn btn-danger" type="submit">Retour à mon profil</button>
      	  		</form>
+     	  		<%}else{ %>
+     	  		 <h1>Aucun utilisateur correspond à votre recherche</h1>
+     	  		<%} %>
      	  	</div>
          <hr>
      	</div>

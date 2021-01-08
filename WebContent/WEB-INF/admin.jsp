@@ -11,7 +11,7 @@
     <meta name="author" content="">
  
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -64,8 +64,8 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      	<form class="form-inline my-2 my-lg-0" method="post" action="recherche">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

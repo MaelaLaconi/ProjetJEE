@@ -168,6 +168,21 @@
             	</td>
             </tr>
             <% } %>
+            <% list = sc.getNotifSupp(current_user.getLogin());           
+            	for(int i = 0 ; i < list.size() ; i++){       
+       		%>
+       		 <tr>
+            	<td>
+            		<% Notification notif2 = (Notification)list.get(i);
+            		out.print(notif2.getExpediteur());%>  vous a supprimé de sa liste d'ami
+            	</td>
+            	<td>
+            		
+            	</td>
+            	<td>
+            	</td>
+            </tr>
+            <% } %>
             </table>
      	  	</div>
          <hr>
