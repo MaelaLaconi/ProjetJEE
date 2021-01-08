@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   
 <%@ page import="BeanPackage.UserBean" %>
-<%@ page import="BeanPackage.Notification" %>
-
-<%@ page import="SQLPackage.SQLConnector" %>
-<%@ page import ="java.util.ArrayList"%>
-<%@ page import ="java.util.List"%>
 
 <!DOCTYPE html>
+<html>
+
 <head>
 
   	<meta charset="utf-8">
@@ -17,7 +13,7 @@
     <meta name="author" content="">
  
 
-    <title>Tous les utilisateurs</title>
+    <title>Modification user</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
 
@@ -29,7 +25,7 @@
 
 </head>
 <body>
- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	<form methode="post" action="bean_servlet" id="formHome">
       	<a class="navbar-brand" href="#" onclick="document.getElementById('formHome').submit()">Home</a>
       </form>
@@ -86,8 +82,7 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Tous les utilisateurs</h1>
-          <p>Visionner tous les utilisateurs de covid19 !</p>
+          <h1 class="display-3">Je modifie un utilisateur !</h1>
         </div>
       </div>
 
@@ -99,47 +94,31 @@
      	  	</br>
      	  	<div class="col-md-12">
      	  	
-     	  	<form method="post" id="form_supp" action="deleteUser">
- 	  	        <input type="hidden" name="idUser1" id="idUser1" value=""/>
-     	  	</form>
- 			<form method="post" id="form_modif" action="adminModifUser">
-           		<input type="hidden" name="idUser" id="idUser" value=""/>
-     	  	</form>
-        		<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
-           
-             <%
- 				SQLConnector sc = new SQLConnector();
-            	List list = sc.getAllUser();           
-	            for(int i = 0 ; i < list.size() ; i++){       
-            %>
-            <tr>
-            	<td>
-            		<% UserBean user = (UserBean)list.get(i);
-            		out.print(user.getLogin()); %> 
-            	</td>
-            	<td>
-            		<button type="submit" name="expe" id =<%out.print(i);%> class="btn btn-secondary" form="form_modif" onclick="setNotif1(this)">Modifier</button>
-            		<script>
-						function setNotif(e) {
-						    document.getElementById("idUser1").value = e.id ;
-						}
-						
-						function setNotif1(e) {
-						    document.getElementById("idUser").value = e.id ;
-						}
-					</script>
-            	</td>
-            	<td>
-            	    <button id =<%out.print(i);%> type="submit" name="refuse" class="btn btn-danger" form="form_supp" onclick="setNotif(this)">Supprimer</button>
-            	</td>
-            </tr>
-            <% } %>
-            
-            </table>
+				<form action="saveEditAdmin" method="post">
+	     	  		<h3> Nouveau login : </h3> 
+	     	  		<input name="newLogin" type="text" required="required"/>
+	     	  		
+	     	  		<h3> Nouveau password : </h3> 
+	     	  		<input name="newPw" type="password" required="required"/>
+	     	  		
+	     	  		<h3> Nouveau prénom : </h3> 
+	     	  		<input name="newName" type="text" required="required"/>
+	     	  		
+	     	  		<h3> Nouveau nom : </h3> 
+  			     	<input name="newLastName" type="text" required="required"/>
+     	  		
+     	  			<h3> Nouvelle date de naissance</h3>
+					<input type="date" id="newNaissance" name="newNaissance"
+			       value="1999-01-05">
+				</div>
+     	  			<button class="btn btn-primary" type="submit">Enregister</button>
+     	  			
+     	  		</form>
      	  	</div>
          <hr>
      	</div>
      </div>
+
 	<hr>
 	</br>
     </main>
@@ -156,5 +135,4 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
-
 </html>
